@@ -1,0 +1,32 @@
+<div style="margin-top:27%;" ng-controller="formController">
+		<form name = "studentForm" novalidate>
+            <table class="form-group" border = "0">
+               <tr>
+                  <td>Enter first name:</td>
+                  <td><input name = "firstname" type = "text" class="form-control" ng-model = "firstName" required>
+                     <span style = "color:red" ng-show = "studentForm.firstname.$dirty && studentForm.firstname.$invalid">
+                        <span ng-show = "studentForm.firstname.$error.required">First Name is required.</span>
+                     </span>
+                  </td>
+               </tr>
+               
+               <tr>
+                  <td>Enter last name: </td>
+                  <td><input name = "lastname"  type = "text" class="form-control" ng-model = "lastName" required>
+                     <span style = "color:red" ng-show = "studentForm.lastname.$dirty && studentForm.lastname.$invalid">
+                        <span ng-show = "studentForm.lastname.$error.required">Last Name is required.</span>
+                     </span>
+                  </td>
+               </tr>
+               <tr>
+                  <td>
+                     <button class="form-control" ng-click = "reset()">Reset</button>
+                  </td>
+                  <td>
+                     <button class="form-control" ng-disabled = "studentForm.firstname.$invalid && studentForm.lastname.$invalid" ng-click="submit()">Submit</button>
+                  </td>
+               </tr>
+					
+            </table>
+        </form>
+</div>

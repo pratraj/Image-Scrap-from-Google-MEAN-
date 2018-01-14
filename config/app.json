@@ -1,0 +1,18 @@
+{
+    "default" : {
+        "http_host" : "localhost",
+        "http_port" : 3333,
+        "db_host" : "localhost",
+        "db_port" : 27017
+    },
+    "development" : {
+        "env" : "development",
+        "db_name" : "scrap",
+        "debug" : true
+    },
+    "test" : {
+        "env" : "test",
+        "db_name" : "scrapTest",
+        "debug" : true
+    }
+}
