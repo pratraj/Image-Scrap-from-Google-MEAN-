@@ -1,3 +1,14 @@
-<div ng-controller="SearchCtrl">
-    <h1>Hiiiiiiii SearchCtrl</h1>
+<div class="container" ng-controller="SearchCtrl">
+    <div class="inner-addon right-addon">
+        <i class="glyphicon glyphicon-search"></i>
+        <input style="width: 100%" ng-model="imageSearch" type="text" class="form-control" placeholder="Search"/>
+        <button class="button btn-primary" style="width: 24%; margin-top:  13px;" type="button" ng-click="searchMe()">Search</button>
+    </div>
+
+    <div ng-show="(aImage && aImage.length>0)">
+        <p>Searched Result of {{imageSearch}}</p>
+        <ul class="col-md-12" ng-repeat="o in aImage">
+            <li class="col-lg-6" style="list-style-type: none"><img src="{{ o }}"/></li>
+        </ul>
+    </div>
 </div>

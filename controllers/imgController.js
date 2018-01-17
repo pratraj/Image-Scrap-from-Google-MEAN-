@@ -7,10 +7,10 @@ var ImageService = promise.promisifyAll(commonUtil.getService('img'));
 router.get("/find",
     function(req,res,next){
         if(req.query && req.query.searchKey) {
-            ImageService.findImageByKeywordAsync({keyword:req.query.searchKey})
+            ImageService.findImageByKeywordAsync({keyword:req.query.searchKey},{imgUrls:1})
            .then(function(imageData){
                 if(imageData && imageData[0]){
-                    return res.status(200).json({"status": "OK", "message": "Image found.", "data":imageData});
+                    return res.status(200).json({"status": "OK", "message": "Image found.", "data":imageData[0]});
                 }else{
                     next();
                 }
@@ -59,43 +59,16 @@ router.get("/find",
     }
 );
 
-/*router.get('/img', function (req, res) {
-    if(req.query && req.query.searchKey) {
-        var search_base = 'http://images.google.com/search?tbm=isch&q=%'//'https://www.google.com/search?q=%&source=lnms&tbm=isch&sa=X';
-        var base = '&tbs=';
-        var build = [];
-        if (req.query.imgType) {
-            build.push('itp:'+req.query.imgType);
-        }
-        if (req.query.color) {
-            build.push('ic:'+req.query.color);
-        }
-        build = build.length > 1 ? build.join(',') : build[0];
-        search_base += '&tbs='+build;
-        var URL = search_base.replace('%', encodeURIComponent(req.query.searchKey))
-        //var URL = 'http://images.google.com/search?tbm=isch&q='+encodeURIComponent(req.query.searchKey);
-
-        return rp(URL)
-            .then(function(html) {
-                var $ = cheerio.load(html);
-                var imgNodes = $('#ires td a img');
-                // imgNodes is merely an array-like object, sigh.
-                // This is purposedly old-school JS because newer stuff doesn't work:
-                var urls = [];
-                imgNodes.map(function(imgNodeIdx) {
-                    var imgNode = imgNodes[imgNodeIdx];
-                    urls.push(imgNode.attribs['src']);
-                });
-                return urls;
-            });
-
-
-    }
-    else {
-        res.send('Hello! check out some new images..')
-    };
-
-})*/
+router.get('/all', function (req, res,next) {
+    ImageService.findImageByKeywordAsync({},{keyword:1})
+            .then(function(imageData){
+                if(imageData && imageData[0]){
+                    return res.status(200).json({"status": "OK", "message": "Image found.", "data":imageData});
+                }else{
+                    next();
+                }
+            }).catch(next)
+})
 
 
 module.exports = router;

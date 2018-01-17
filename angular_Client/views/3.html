@@ -1,3 +1,8 @@
 <div ng-controller="ImagesCtrl">
-  <h1>Hiiiiiiii pic</h1>
+  <div ng-show="(aImage && aImage.length>0)">
+    <p>Searched Result of {{keyword}}</p>
+    <ul class="col-md-12" ng-repeat="o in aImage">
+      <li class="col-lg-6" style="list-style-type: none"><img src="{{ o }}"/></li>
+    </ul>
+  </div>
 </div>

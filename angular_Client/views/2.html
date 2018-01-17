@@ -1,3 +1,7 @@
 <div ng-controller="SearchedCtrl">
-  <h1>Hiiiiiiii asasasa</h1>
+  <div ng-show="(aImage && aImage.length>0)">
+    <div class="col-md-12" ng-repeat="o in aImage">
+      <a href="" ng-click="showImage(o.keyword)">{{o.keyword}}</a>
+    </div>
+  </div>
 </div>

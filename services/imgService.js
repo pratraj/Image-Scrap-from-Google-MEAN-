@@ -11,8 +11,8 @@ module.exports.saveImageByKeyword = function(data,next) {
     });
 };
 
-module.exports.findImageByKeyword = function(query, next) {
-    Image.findAsync(query)
+module.exports.findImageByKeyword = function(query,projection , next) {
+    Image.findAsync(query,projection)
     .then(function (dbData) {
         return next(null, dbData);
     })
