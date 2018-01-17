@@ -15,6 +15,7 @@ var Promise = require('bluebird');
 var mongoose = Promise.promisifyAll(require('mongoose'));
 var passport = require('passport');
 var winston = require('winston');
+var path = require('path');
 
 global.projectHome = __dirname;
 global.config = require('konfig')();//Config loader module(By Default config folder in home directory) You can also use different folder name except config by passing path variable while loading Konfig :global.config = require('konfig')({ path: './another_directory' })
@@ -37,6 +38,7 @@ app.configureViews = function(){
     app.use(cookieParser());
     app.use(express.static(projectHome + '/public'));
 	app.use('/',express.static(projectHome + '/angular_Client'));
+     app.use('/views',express.static(projectHome + '/angular_Client/views'));
 	app.use('/node_modules',express.static('node_modules/'));
     app.use(compression());
  };
@@ -69,10 +71,6 @@ app.configureRoutes = function(){
     // Unprotected Routes
     app.use('/api/img', commonUtil.getController('img'));
 };
-// GET method route
-app.get('/', function(req, res) {
-        res.sendFile('./angular_Client/index.html', {"root": projectHome}); // load the single view file (angular will handle the page changes on the front-end)
-});
 
 app.configureErorrHandlers = function() {
     //catch 404 as error

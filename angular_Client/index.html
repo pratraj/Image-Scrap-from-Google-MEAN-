@@ -16,13 +16,15 @@
 
 		<div class="navbar">
 			<ul class="nav navbar-nav">
-				<li ng-class="navClass('home')"><a href='' ng-click="loadHome()">Home</a></li>
-				<li ng-class="navClass('about')"><a href='' ng-click="loadAbout()">About Us</a></li>
-				<li ng-class="navClass('contact')"><a href='' ng-click="loadContact()">Contact Us</a></li>
+				<li><a ui-sref="search" ui-sref-active="active">New Search</a></li>
+				<li><a ui-sref="searched" ui-sref-active="active">All Searched</a></li>
+				<li><a ui-sref="images" ui-sref-active="active">Images</a></li>
 			</ul>
 		</div>
 
-		<div ng-view></div>
+		<ui-view></ui-view>
+
+
 		<script src="../node_modules/jquery/dist/jquery.min.js"></script>
 		<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 		<script src="../node_modules/angular/angular.js"></script>

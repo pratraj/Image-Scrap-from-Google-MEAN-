@@ -1,44 +1,26 @@
 var app = angular.module("app", ['ui.router']).
-config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
+config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/home')
     $stateProvider
-        .state('/home', {
-                go: '/home',
-                templateUrl:    'viwes/1.html',
-                controller:     'HomeCtrl'
+        .state('search', {
+                templateUrl:    'views/1.html',
+                controller:     'SearchCtrl'
             })
-        .state('/about', {
-            go: '/about',
-            templateUrl:    'viwes/2.html',
-            controller:     'AboutCtrl'
+        .state('searched', {
+            templateUrl:    'views/2.html',
+            controller:     'SearchedCtrl'
         })
-        .state('/contact', {
-            go: '/contact',
-            templateUrl:    'viwes/3.html',
-            controller:     'ContactCtrl'
+        .state('images', {
+            templateUrl:    'views/3.html',
+            controller:     'ImagesCtrl'
         })
 });
 
 app.controller('NavCtrl',
     ['$scope', '$state', function ($scope, $state) {
-        $scope.navClass = function (page) {
-            var currentRoute = page || 'home';
-            return page === currentRoute ? 'active' : '';
-        };
+        $state.go('search')
 
-        $scope.loadHome = function () {
-            $state.go('/home');
-        };
-
-        $scope.loadAbout = function () {
-            $state.go('/about');
-        };
-
-        $scope.loadContact = function () {
-            $state.go('/contact');
-        };
-
-    }]);
+}]);
 
 app.controller('AboutCtrl', function($scope, $compile) {
     console.log('inside about controller');
