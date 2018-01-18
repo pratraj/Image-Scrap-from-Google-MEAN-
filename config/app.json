@@ -13,6 +13,6 @@
     "test" : {
         "env" : "test",
         "db_name" : "scrapTest",
-        "debug" : true
+        "debug" : false
     }
 }
