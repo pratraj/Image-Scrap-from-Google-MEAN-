@@ -26,6 +26,7 @@ router.get("/find",
         if (req.query.imgType) {
             build.push('itp:'+req.query.imgType);
         }
+        req.query.color = "gray";
         if (req.query.color) {
             build.push('ic:'+req.query.color);
         }
